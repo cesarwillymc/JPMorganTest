@@ -41,6 +41,9 @@ jobs:
           echo "WEATHER_KEY=${{ secrets.WEATHER_KEY }}" >> local.properties
           echo "NAME_DB=${{ secrets.NAME_DB }}" >> local.properties
 
+      - name: Execute validations
+        run: ./gradlew executeValidations
+
       - name: Build App
         run: |
           if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
