@@ -10,14 +10,18 @@ class SearchLocalDataSourceImpl @Inject constructor(
     private val sharedPreferences: SharedPreferences
 ) : SearchLocalDataSource {
     override fun saveQuery(value: String): Result<Unit> {
-        sharedPreferences.edit {
-            if (value.isEmpty()) {
-                remove(RECENTLY_SEARCHED)
-            } else {
-                putString(RECENTLY_SEARCHED, value)
+        return try {
+            sharedPreferences.edit {
+                if (value.isEmpty()) {
+                    remove(RECENTLY_SEARCHED)
+                } else {
+                    putString(RECENTLY_SEARCHED, value)
+                }
             }
+            Result.Success(Unit)
+        } catch (e: Exception) {
+            Result.Error(e)
         }
-        return Result.Success(Unit)
     }
 
     override fun recentlySearched(): Result<String> {
@@ -32,6 +36,7 @@ class SearchLocalDataSourceImpl @Inject constructor(
             Result.Error(e)
         }
     }
+
     companion object {
         const val RECENTLY_SEARCHED = "recently_searched"
     }
