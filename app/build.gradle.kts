@@ -10,12 +10,12 @@ plugins {
 apply(from = "${rootProject.projectDir}/jacoco.gradle")
 android {
     namespace = "com.cesarwillymc.jpmorgantest"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.cesarwillymc.jpmorgantest"
         minSdk = 23
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -86,7 +86,7 @@ dependencies {
 
     // Coil
     implementation("io.coil-kt:coil-compose:1.4.0")
-    
+
     // -- Network
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
