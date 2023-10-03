@@ -1,4 +1,4 @@
-package com.cesarwillymc.jpmorgantest.data.sources.search.utils
+package com.cesarwillymc.jpmorgantest.utils
 
 import io.mockk.MockKAnnotations
 import org.junit.Before

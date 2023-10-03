@@ -2,13 +2,13 @@ package com.cesarwillymc.jpmorgantest.data.sources.search.remote
 
 import com.cesarwillymc.jpmorgantest.data.sources.network.util.error.ErrorSource
 import com.cesarwillymc.jpmorgantest.data.sources.search.service.SearchService
-import com.cesarwillymc.jpmorgantest.data.sources.search.utils.MockkTest
-import com.cesarwillymc.jpmorgantest.data.sources.search.utils.data.SearchDataGenerator
 import com.cesarwillymc.jpmorgantest.util.constants.ONE
 import com.cesarwillymc.jpmorgantest.util.state.dataOrNull
 import com.cesarwillymc.jpmorgantest.util.state.getError
 import com.cesarwillymc.jpmorgantest.util.state.isError
 import com.cesarwillymc.jpmorgantest.util.state.isSuccess
+import com.cesarwillymc.jpmorgantest.utils.MockkTest
+import com.cesarwillymc.jpmorgantest.utils.data.SearchDataGenerator
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.impl.annotations.RelaxedMockK

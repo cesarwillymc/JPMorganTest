@@ -1,4 +1,4 @@
-package com.cesarwillymc.jpmorgantest.data.sources.search.utils.data
+package com.cesarwillymc.jpmorgantest.utils.data
 
 import com.cesarwillymc.jpmorgantest.data.sources.search.entities.WeatherDetailResponse
 import com.google.gson.Gson
