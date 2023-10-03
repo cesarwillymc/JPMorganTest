@@ -6,6 +6,13 @@ import androidx.core.content.edit
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
 
+/**
+ * Created by Cesar Canaza on 10/3/23.
+ * cesarwilly.mc@gmail.com
+ *
+ * IOWA, United States.
+ */
+
 class EncryptedSharedPreferencesFactory(fileName: String, context: Context) {
 
     lateinit var sharedPreferences: SharedPreferences

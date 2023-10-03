@@ -10,6 +10,12 @@ import okhttp3.ResponseBody
 import retrofit2.HttpException
 import java.io.IOException
 
+/**
+ * Created by Cesar Canaza on 10/3/23.
+ * cesarwilly.mc@gmail.com
+ *
+ * IOWA, United States.
+ */
 abstract class BaseRemoteDataSource : ErrorHandler {
 
     protected suspend fun <Out> getResult(

@@ -3,7 +3,13 @@ package com.cesarwillymc.jpmorgantest.domain.base
 import com.cesarwillymc.jpmorgantest.util.state.Result
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
+
 /**
+ * Created by Cesar Canaza on 10/3/23.
+ * cesarwilly.mc@gmail.com
+ *
+ * IOWA, United States.
+ *
  * It can be used for use cases that return Unit, Boolean, Int, etc.
  * No mapper needed
  */
