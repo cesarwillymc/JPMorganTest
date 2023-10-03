@@ -43,6 +43,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.4.3"
@@ -78,12 +79,6 @@ dependencies {
     // View Model
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
 
-    // Room
-    implementation("androidx.room:room-runtime:2.5.2")
-    annotationProcessor("androidx.room:room-compiler:2.5.2")
-    kapt("androidx.room:room-compiler:2.5.2")
-    implementation("androidx.room:room-ktx:2.5.2")
-
     // Coil
     implementation("io.coil-kt:coil-compose:1.4.0")
 
@@ -97,6 +92,10 @@ dependencies {
 
     // Unit test
     testImplementation("junit:junit:4.13.2")
+
+    // Shared Preference
+    implementation("androidx.security:security-crypto:1.1.0-alpha06")
+
     // AndroidX Test Core library for testing Android components
     androidTestImplementation("androidx.test:core:1.5.0")
 
@@ -112,4 +111,48 @@ dependencies {
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
     testImplementation("androidx.arch.core:core-testing:2.2.0")
     testImplementation("app.cash.turbine:turbine:1.0.0")
+}
+
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
+}
+project.afterEvaluate {
+    this.tasks.getByName("clean").dependsOn("installGitHooks")
+    this.tasks.getByName("assemble").dependsOn("installGitHooks")
+    tasks.create("executeTest") {
+        group = "verification"
+        dependsOn("test")
+    }
+    tasks.create("executeValidations") {
+        group = "verification"
+        dependsOn("lintKotlin")
+        dependsOn("detekt")
+        dependsOn("executeTest") /* Execute all test */
+    }
+    tasks.create("formatAndValidate") {
+        group = "verification"
+        dependsOn("formatKotlin")
+        dependsOn("executeValidations")
+        tasks.getByName("executeValidations").mustRunAfter("formatKotlin")
+    }
+    tasks.create("copyGitHooks", Copy::class.java) {
+        description = "Copies the git hooks from team-props/git-hooks to the .git folder."
+        from("${rootDir}/team-props/git-hooks") {
+            include("**/*.sh")
+            rename("(.*).sh", "$1")
+        }
+        into("${rootDir}/.git/hooks")
+    }
+    tasks.create("installGitHooks", Exec::class.java) {
+        description = "Installs the pre-commit git hooks from team-props/git-hooks."
+        group = "git hooks"
+        workingDir = rootDir
+        commandLine = listOf("chmod")
+        args("-R", "+x", ".git/hooks/")
+        dependsOn("copyGitHooks")
+        doLast {
+            logger.info("---- Git hook installed successfully.")
+        }
+    }
 }
