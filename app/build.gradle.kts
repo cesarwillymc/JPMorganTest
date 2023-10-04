@@ -1,3 +1,5 @@
+import com.android.tools.build.bundletool.commands.DebugKeystoreUtils.DEBUG_KEY_PASSWORD
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -5,6 +7,12 @@ plugins {
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
     kotlin("kapt")
 }
+
+private val localProperties =
+    com.android.build.gradle.internal.cxx.configure.gradleLocalProperties(rootDir)
+
+fun getLocalProperty(key: String, defaultValue: String = ""): String =
+    localProperties.getProperty(key, System.getenv(key) ?: defaultValue)
 // Run jacoco gradle
 // Combination between DSL and gradle
 apply(from = "${rootProject.projectDir}/jacoco.gradle")
@@ -25,9 +33,26 @@ android {
         }
     }
 
+    signingConfigs {
+        getByName("debug") {
+            storeFile = file("../keystore/debug/keystore.debug")
+            keyAlias = "debugKey"
+            keyPassword = getLocalProperty("DEBUG_KEY_PASSWORD")
+            storePassword = getLocalProperty("DEBUG_KEY_PASSWORD")
+        }
+    }
     buildTypes {
         release {
-            isMinifyEnabled = false
+            signingConfig = signingConfigs.getByName("debug")
+            isMinifyEnabled = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+        debug {
+            signingConfig = signingConfigs.getByName("debug")
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
