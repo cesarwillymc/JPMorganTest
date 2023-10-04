@@ -27,8 +27,27 @@ Thank you for check this project.
 ### Additional comments
   - ui: Package that contains all the layers like **Permission, General Composables, NavigationComponent, Theme, Services**
   - util: Contains global Constants and Extension Functions 
+## FILE WITH JAVA
+- domain/base/SuspendNoParamsUseCase.java
+- data/sources/search/mapper/SearchResultMapperImpl.java
+- data/sources/search/local/SearchLocalDataSourceImpl.java
+## Technology Stack
+ - Kotlin  Programming language
+ - Java:  Programming language
+ - MVVM:  Architecture design that help us to decouple our code in layers
+ - Retrofit:  Library that help us to consume ApiRest
+ - JUnit: Framework that help us to test code 
+ - Kotlin Coroutines: Provides ways to manage threads very easily
+ - Flow: Library that help us to manage the asynchronous stream data
+ - Mockk: Library for Mock data in the unit test
+ - Jetpack Compose:  Framework for UI using Kotlin where we developed the code like puzzles
+ - Hilt: Dependency Injection in Compile-Time
+ - Jetpack Navigation:  library that simplify and streamline the navigation between composables or screens
+ - Jacoco: Generate Files of the coverage of the unit test
+ - KLint: Format the code for give my quality to the project
+ - Detekt: Code analysis tool that help us to follow rules in the code
+ - others like:  Google accompanist, Turbine ....
 ## Configuration:
-
 ### Local.properties
 Add  this line
 ```
@@ -41,3 +60,12 @@ BASE_URL=https://api.openweathermap.org/
 Go to **Gradle JDK** and change to **Java17**
 
 ![Java](image/gradle_j17.png)  
+
+### DOWNLOAD APP
+## Download the app by Google Drive
+- [GOOGLE DRIVE](https://drive.google.com/drive/folders/1DV46UTecrTV2EdjYL2M6HMVA0CiD7H0K?usp=sharing)
+## Download the app by artifact github
+Go to [Here](https://github.com/cesarwillymc/JPMorganTest/actions)
+- ![APK](image/artifact.png)  
+Later select the first workflow and download the apk
+- ![APK](image/app.png)  
