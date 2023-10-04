@@ -1,4 +1,4 @@
-package com.cesarwillymc.jpmorgantest.data.sources.local
+package com.cesarwillymc.jpmorgantest.data.settings.local
 
 import android.content.Context
 import android.content.SharedPreferences

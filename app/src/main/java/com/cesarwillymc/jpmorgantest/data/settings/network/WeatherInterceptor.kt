@@ -1,4 +1,4 @@
-package com.cesarwillymc.jpmorgantest.data.sources.network
+package com.cesarwillymc.jpmorgantest.data.settings.network
 
 import com.cesarwillymc.jpmorgantest.BuildConfig
 import okhttp3.Interceptor

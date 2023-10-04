@@ -3,7 +3,7 @@ package com.cesarwillymc.jpmorgantest.data.di
 import android.content.Context
 import android.content.SharedPreferences
 import com.cesarwillymc.jpmorgantest.BuildConfig
-import com.cesarwillymc.jpmorgantest.data.sources.local.EncryptedSharedPreferencesFactory
+import com.cesarwillymc.jpmorgantest.data.settings.local.EncryptedSharedPreferencesFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

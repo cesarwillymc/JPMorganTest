@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cesarwillymc.jpmorgantest.domain.usecase.GetRecentlySearchedUseCase
 import com.cesarwillymc.jpmorgantest.domain.usecase.SearchByQueryUseCase
-import com.cesarwillymc.jpmorgantest.presentation.base.delegate.LocationDelegate
+import com.cesarwillymc.jpmorgantest.presentation.deletage.LocationDelegate
 import com.cesarwillymc.jpmorgantest.presentation.detail.state.DetailStateUI
 import com.cesarwillymc.jpmorgantest.util.state.getData
 import com.cesarwillymc.jpmorgantest.util.state.isError
@@ -35,7 +35,7 @@ class DetailViewModel @Inject constructor(
     fun loadRecentlySearched() {
         viewModelScope.launch {
             _detailStateUI.update { DetailStateUI(isLoading = true) }
-            val recentlySearched = async { getRecentlySearchedUseCase(Unit) }.await()
+            val recentlySearched = async { getRecentlySearchedUseCase() }.await()
             searchByQueryUseCase(recentlySearched.getData()).let { result ->
                 when {
                     result.isSuccess -> {

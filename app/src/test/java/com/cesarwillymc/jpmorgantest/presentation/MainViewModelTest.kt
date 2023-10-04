@@ -30,7 +30,7 @@ class MainViewModelTest : BaseViewModelTest() {
 
     @Before
     fun setUp() {
-        coEvery { getRecentlySearchedUseCase(Unit) } returns Result.Error(Exception())
+        coEvery { getRecentlySearchedUseCase() } returns Result.Error(Exception())
         viewModel = MainViewModel(getRecentlySearchedUseCase)
     }
 
@@ -41,7 +41,7 @@ class MainViewModelTest : BaseViewModelTest() {
 
     @Test
     fun getStartDestinationSearch() = runTest {
-        coEvery { getRecentlySearchedUseCase(Unit) } returns Result.Error(Exception())
+        coEvery { getRecentlySearchedUseCase() } returns Result.Error(Exception())
         viewModel.startDestination.test {
             viewModel.loadRecentlySearched()
             Assert.assertEquals(MainRoute.Search.path, awaitItem())

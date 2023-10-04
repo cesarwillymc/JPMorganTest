@@ -1,14 +1,15 @@
-package com.cesarwillymc.jpmorgantest.data.sources.network.util
+package com.cesarwillymc.jpmorgantest.data.settings.network.util
 
-import com.cesarwillymc.jpmorgantest.data.sources.network.util.error.ErrorApi
-import com.cesarwillymc.jpmorgantest.data.sources.network.util.error.ErrorHandler
-import com.cesarwillymc.jpmorgantest.data.sources.network.util.error.ErrorSource
+import com.cesarwillymc.jpmorgantest.data.settings.network.util.error.ErrorApi
+import com.cesarwillymc.jpmorgantest.data.settings.network.util.error.ErrorHandler
+import com.cesarwillymc.jpmorgantest.data.settings.network.util.error.ErrorSource
 import com.cesarwillymc.jpmorgantest.util.state.Result
 import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
 import okhttp3.ResponseBody
 import retrofit2.HttpException
 import java.io.IOException
+
 /**
  * Created by Cesar Canaza on 10/3/23.
  * cesarwilly.mc@gmail.com

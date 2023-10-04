@@ -11,7 +11,7 @@ import android.net.Uri
 import android.os.Looper
 import android.provider.Settings
 import androidx.core.content.ContextCompat
-import com.cesarwillymc.jpmorgantest.presentation.base.entities.LatLngPresentation
+import com.cesarwillymc.jpmorgantest.presentation.deletage.entities.LatLngPresentation
 import com.cesarwillymc.jpmorgantest.util.constants.LOCATION_EXPIRATION_TIME
 import com.cesarwillymc.jpmorgantest.util.constants.LOCATION_INTERVAL
 import com.cesarwillymc.jpmorgantest.util.constants.LOCATION_NUM_UPDATES

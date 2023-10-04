@@ -17,9 +17,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.cesarwillymc.jpmorgantest.R
-import com.cesarwillymc.jpmorgantest.presentation.permission.PermissionContent
 import com.cesarwillymc.jpmorgantest.presentation.search.state.SearchStateUI
 import com.cesarwillymc.jpmorgantest.ui.components.CustomPrimaryButton
+import com.cesarwillymc.jpmorgantest.ui.permission.PermissionContent
 import com.cesarwillymc.jpmorgantest.util.extension.hasLocationPermission
 import kotlin.random.Random
 

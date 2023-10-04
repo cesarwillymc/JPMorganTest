@@ -9,7 +9,6 @@ import com.cesarwillymc.jpmorgantest.utils.data.SearchDataGenerator
 import io.mockk.coEvery
 import io.mockk.impl.annotations.RelaxedMockK
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert
 import org.junit.Before
@@ -29,7 +28,7 @@ class GetRecentlySearchedUseCaseTest : MockkTest() {
     @OptIn(ExperimentalCoroutinesApi::class)
     @Before
     fun setUp() {
-        useCase = GetRecentlySearchedUseCase(repository, UnconfinedTestDispatcher())
+        useCase = GetRecentlySearchedUseCase(repository)
     }
 
     @Test
@@ -38,7 +37,7 @@ class GetRecentlySearchedUseCaseTest : MockkTest() {
             repository.recentlySearched()
         } returns Result.Success(SearchDataGenerator.querySearch)
 
-        Assert.assertTrue(useCase(Unit).isSuccess)
+        Assert.assertTrue(useCase().isSuccess)
     }
 
     @Test
@@ -47,6 +46,6 @@ class GetRecentlySearchedUseCaseTest : MockkTest() {
             repository.recentlySearched()
         } returns Result.Error(Exception())
 
-        Assert.assertTrue(useCase(Unit).isError)
+        Assert.assertTrue(useCase().isError)
     }
 }

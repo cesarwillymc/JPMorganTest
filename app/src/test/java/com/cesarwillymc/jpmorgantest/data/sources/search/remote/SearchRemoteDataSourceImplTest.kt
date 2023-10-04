@@ -1,6 +1,6 @@
 package com.cesarwillymc.jpmorgantest.data.sources.search.remote
 
-import com.cesarwillymc.jpmorgantest.data.sources.network.util.error.ErrorSource
+import com.cesarwillymc.jpmorgantest.data.settings.network.util.error.ErrorSource
 import com.cesarwillymc.jpmorgantest.data.sources.search.service.SearchService
 import com.cesarwillymc.jpmorgantest.util.constants.FORMAT_ONLY_US
 import com.cesarwillymc.jpmorgantest.util.constants.ONE
