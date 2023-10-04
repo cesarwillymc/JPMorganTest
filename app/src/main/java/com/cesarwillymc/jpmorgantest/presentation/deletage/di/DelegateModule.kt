@@ -1,7 +1,7 @@
-package com.cesarwillymc.jpmorgantest.presentation.base.di
+package com.cesarwillymc.jpmorgantest.presentation.deletage.di
 
-import com.cesarwillymc.jpmorgantest.presentation.base.delegate.LocationDelegate
-import com.cesarwillymc.jpmorgantest.presentation.base.delegate.LocationDelegateImpl
+import com.cesarwillymc.jpmorgantest.presentation.deletage.LocationDelegate
+import com.cesarwillymc.jpmorgantest.presentation.deletage.LocationDelegateImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

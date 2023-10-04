@@ -1,8 +1,11 @@
-package com.cesarwillymc.jpmorgantest.data.sources.network.util
+package com.cesarwillymc.jpmorgantest.data.settings.network.util
 
-import com.cesarwillymc.jpmorgantest.data.sources.network.util.error.ErrorApi
-import com.cesarwillymc.jpmorgantest.data.sources.network.util.error.ErrorHandler
-import com.cesarwillymc.jpmorgantest.data.sources.network.util.error.ErrorSource
+import android.util.Log
+import com.cesarwillymc.jpmorgantest.data.settings.network.util.error.ErrorApi
+import com.cesarwillymc.jpmorgantest.data.settings.network.util.error.ErrorHandler
+import com.cesarwillymc.jpmorgantest.data.settings.network.util.error.ErrorSource
+import com.cesarwillymc.jpmorgantest.util.constants.LOG_DATA
+import com.cesarwillymc.jpmorgantest.util.constants.LOG_DOMAIN
 import com.cesarwillymc.jpmorgantest.util.state.Result
 import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
@@ -22,6 +25,7 @@ abstract class BaseRemoteDataSource : ErrorHandler {
     ): Result<Out> = try {
         Result.Success(call())
     } catch (e: Exception) {
+        Log.e(LOG_DATA, e.message.toString())
         Result.Error(exception = getError(e))
     }
 

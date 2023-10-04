@@ -1,4 +1,4 @@
-package com.cesarwillymc.jpmorgantest.presentation.base.entities
+package com.cesarwillymc.jpmorgantest.presentation.deletage.entities
 
 /**
  * Created by Cesar Canaza on 10/4/23.

@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.cesarwillymc.jpmorgantest.domain.usecase.SaveLastSearchUseCase
 import com.cesarwillymc.jpmorgantest.domain.usecase.SearchByLatLongUseCase
 import com.cesarwillymc.jpmorgantest.domain.usecase.SearchByQueryUseCase
-import com.cesarwillymc.jpmorgantest.presentation.base.delegate.LocationDelegate
+import com.cesarwillymc.jpmorgantest.presentation.deletage.LocationDelegate
 import com.cesarwillymc.jpmorgantest.presentation.search.state.SearchStateUI
 import com.cesarwillymc.jpmorgantest.util.constants.DELAY_700
 import com.cesarwillymc.jpmorgantest.util.constants.EMPTY_STRING

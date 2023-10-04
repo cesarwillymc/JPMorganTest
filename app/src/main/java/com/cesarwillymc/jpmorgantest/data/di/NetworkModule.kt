@@ -1,8 +1,8 @@
 package com.cesarwillymc.jpmorgantest.data.di
 
 import com.cesarwillymc.jpmorgantest.BuildConfig
-import com.cesarwillymc.jpmorgantest.data.sources.network.WeatherInterceptor
-import com.cesarwillymc.jpmorgantest.data.sources.network.util.DefaultClient
+import com.cesarwillymc.jpmorgantest.data.settings.network.WeatherInterceptor
+import com.cesarwillymc.jpmorgantest.data.settings.network.util.DefaultClient
 import com.cesarwillymc.jpmorgantest.data.sources.search.service.SearchService
 import com.google.gson.Gson
 import dagger.Module

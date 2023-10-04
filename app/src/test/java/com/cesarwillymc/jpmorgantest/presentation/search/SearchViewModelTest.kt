@@ -4,7 +4,7 @@ import app.cash.turbine.test
 import com.cesarwillymc.jpmorgantest.domain.usecase.SaveLastSearchUseCase
 import com.cesarwillymc.jpmorgantest.domain.usecase.SearchByLatLongUseCase
 import com.cesarwillymc.jpmorgantest.domain.usecase.SearchByQueryUseCase
-import com.cesarwillymc.jpmorgantest.presentation.base.delegate.LocationDelegate
+import com.cesarwillymc.jpmorgantest.presentation.deletage.LocationDelegate
 import com.cesarwillymc.jpmorgantest.util.constants.DELAY_1000
 import com.cesarwillymc.jpmorgantest.util.constants.EMPTY_STRING
 import com.cesarwillymc.jpmorgantest.util.state.Result

@@ -1,4 +1,4 @@
-package com.cesarwillymc.jpmorgantest.presentation.permission
+package com.cesarwillymc.jpmorgantest.ui.permission
 
 import android.Manifest
 import android.app.Activity

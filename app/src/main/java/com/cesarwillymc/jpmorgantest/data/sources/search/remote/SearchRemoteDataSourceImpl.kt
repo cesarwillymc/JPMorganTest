@@ -1,6 +1,6 @@
 package com.cesarwillymc.jpmorgantest.data.sources.search.remote
 
-import com.cesarwillymc.jpmorgantest.data.sources.network.util.BaseRemoteDataSource
+import com.cesarwillymc.jpmorgantest.data.settings.network.util.BaseRemoteDataSource
 import com.cesarwillymc.jpmorgantest.data.sources.search.entities.WeatherDetailResponse
 import com.cesarwillymc.jpmorgantest.data.sources.search.service.SearchService
 import com.cesarwillymc.jpmorgantest.util.state.Result

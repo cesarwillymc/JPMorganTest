@@ -1,4 +1,4 @@
-package com.cesarwillymc.jpmorgantest.data.sources.network.util
+package com.cesarwillymc.jpmorgantest.data.settings.network.util
 
 import javax.inject.Qualifier
 

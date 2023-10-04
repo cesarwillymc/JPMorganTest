@@ -3,7 +3,7 @@ package com.cesarwillymc.jpmorgantest.presentation.detail
 import app.cash.turbine.test
 import com.cesarwillymc.jpmorgantest.domain.usecase.GetRecentlySearchedUseCase
 import com.cesarwillymc.jpmorgantest.domain.usecase.SearchByQueryUseCase
-import com.cesarwillymc.jpmorgantest.presentation.base.delegate.LocationDelegate
+import com.cesarwillymc.jpmorgantest.presentation.deletage.LocationDelegate
 import com.cesarwillymc.jpmorgantest.util.state.Result
 import com.cesarwillymc.jpmorgantest.utils.BaseViewModelTest
 import com.cesarwillymc.jpmorgantest.utils.data.SearchDataGenerator

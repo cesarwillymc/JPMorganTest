@@ -1,4 +1,4 @@
-package com.cesarwillymc.jpmorgantest.presentation.base.delegate
+package com.cesarwillymc.jpmorgantest.presentation.deletage
 
 import com.cesarwillymc.jpmorgantest.domain.usecase.entities.WeatherDetail
 import kotlinx.coroutines.flow.StateFlow
