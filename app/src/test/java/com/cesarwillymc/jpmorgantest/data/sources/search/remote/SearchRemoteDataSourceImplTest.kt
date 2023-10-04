@@ -2,6 +2,7 @@ package com.cesarwillymc.jpmorgantest.data.sources.search.remote
 
 import com.cesarwillymc.jpmorgantest.data.sources.network.util.error.ErrorSource
 import com.cesarwillymc.jpmorgantest.data.sources.search.service.SearchService
+import com.cesarwillymc.jpmorgantest.util.constants.FORMAT_ONLY_US
 import com.cesarwillymc.jpmorgantest.util.constants.ONE
 import com.cesarwillymc.jpmorgantest.util.state.dataOrNull
 import com.cesarwillymc.jpmorgantest.util.state.getError
@@ -34,7 +35,9 @@ class SearchRemoteDataSourceImplTest : MockkTest() {
     fun searchSuccess() = runTest {
         coEvery {
             searchService.search(
-                SearchDataGenerator.querySearch
+                FORMAT_ONLY_US.format(SearchDataGenerator.city),
+                null,
+                null
             )
         } returns SearchDataGenerator.weatherData
 
@@ -45,14 +48,22 @@ class SearchRemoteDataSourceImplTest : MockkTest() {
             Assert.assertTrue(it.isSuccess)
         }
         // Check verify
-        coVerify(exactly = ONE) { searchService.search(SearchDataGenerator.querySearch) }
+        coVerify(exactly = ONE) {
+            searchService.search(
+                FORMAT_ONLY_US.format(SearchDataGenerator.city),
+                null,
+                null
+            )
+        }
     }
 
     @Test
     fun searchError() = runTest {
         coEvery {
             searchService.search(
-                SearchDataGenerator.querySearch
+                FORMAT_ONLY_US.format(SearchDataGenerator.city),
+                null,
+                null
             )
         } throws IOException()
 
@@ -64,7 +75,7 @@ class SearchRemoteDataSourceImplTest : MockkTest() {
         }
         // Check verify
         coVerify(exactly = ONE) {
-            searchService.search(SearchDataGenerator.querySearch)
+            searchService.search(FORMAT_ONLY_US.format(SearchDataGenerator.city), null, null)
         }
     }
 }

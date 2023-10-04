@@ -3,8 +3,8 @@ package com.cesarwillymc.jpmorgantest.data.sources.search
 import com.cesarwillymc.jpmorgantest.data.sources.search.local.SearchLocalDataSource
 import com.cesarwillymc.jpmorgantest.data.sources.search.mapper.SearchResultMapper
 import com.cesarwillymc.jpmorgantest.data.sources.search.remote.SearchRemoteDataSource
+import com.cesarwillymc.jpmorgantest.util.constants.FORMAT_ONLY_US
 import com.cesarwillymc.jpmorgantest.util.constants.ONE
-import com.cesarwillymc.jpmorgantest.util.extension.formatOnlyUS
 import com.cesarwillymc.jpmorgantest.util.state.Result
 import com.cesarwillymc.jpmorgantest.util.state.dataOrNull
 import com.cesarwillymc.jpmorgantest.util.state.isError
@@ -43,11 +43,7 @@ class SearchRepositoryTest : MockkTest() {
     fun searchFilterSuccess() = runTest {
         coEvery {
             remoteDataSource.search(
-                formatOnlyUS(
-                    SearchDataGenerator.city,
-                    SearchDataGenerator.stateCode,
-                    SearchDataGenerator.countryCode
-                )
+                FORMAT_ONLY_US.format(SearchDataGenerator.city)
             )
         } returns Result.Success(SearchDataGenerator.weatherData)
 
@@ -55,9 +51,7 @@ class SearchRepositoryTest : MockkTest() {
             searchResultMapper.fromResponseToDomain(SearchDataGenerator.weatherData)
         } returns SearchDomainGenerator.weatherDomain
         searchDataSource.searchByQuery(
-            SearchDataGenerator.city,
-            SearchDataGenerator.stateCode,
-            SearchDataGenerator.countryCode
+            SearchDataGenerator.city
         ).let {
             Assert.assertEquals(it.dataOrNull(), SearchDomainGenerator.weatherDomain)
             Assert.assertTrue(it.isSuccess)
@@ -68,14 +62,12 @@ class SearchRepositoryTest : MockkTest() {
     fun searchFilterError() = runTest {
         coEvery {
             remoteDataSource.search(
-                SearchDataGenerator.querySearch
+                FORMAT_ONLY_US.format(SearchDataGenerator.city)
             )
         } returns Result.Error(Exception())
 
         searchDataSource.searchByQuery(
-            SearchDataGenerator.city,
-            SearchDataGenerator.stateCode,
-            SearchDataGenerator.countryCode
+            SearchDataGenerator.city
         ).let {
             Assert.assertTrue(it.isError)
         }
@@ -84,16 +76,12 @@ class SearchRepositoryTest : MockkTest() {
     @Test
     fun recentlySearched() = runTest {
         coEvery { searchLocalDataSource.recentlySearched() } returns Result.Success(
-            formatOnlyUS(
-                SearchDataGenerator.city,
-                SearchDataGenerator.stateCode,
-                SearchDataGenerator.countryCode
-            )
+            SearchDataGenerator.city
         )
 
         searchDataSource.recentlySearched().let {
             Assert.assertTrue(it.isSuccess)
-            Assert.assertEquals(it.dataOrNull(), SearchDataGenerator.querySearch)
+            Assert.assertEquals(it.dataOrNull(), SearchDataGenerator.city)
         }
         // Check verify
         coVerify(exactly = ONE) {
@@ -118,18 +106,12 @@ class SearchRepositoryTest : MockkTest() {
     fun saveQuery() = runTest {
         coEvery {
             searchLocalDataSource.saveQuery(
-                formatOnlyUS(
-                    SearchDataGenerator.city,
-                    SearchDataGenerator.stateCode,
-                    SearchDataGenerator.countryCode
-                )
+                FORMAT_ONLY_US.format(SearchDataGenerator.city)
             )
         } returns Result.Success(Unit)
 
         searchDataSource.saveQuery(
-            SearchDataGenerator.city,
-            SearchDataGenerator.stateCode,
-            SearchDataGenerator.countryCode
+            SearchDataGenerator.city
         ).let {
             Assert.assertTrue(it.isSuccess)
         }
@@ -139,14 +121,12 @@ class SearchRepositoryTest : MockkTest() {
     fun saveQueryError() = runTest {
         coEvery {
             searchLocalDataSource.saveQuery(
-                SearchDataGenerator.querySearch
+                FORMAT_ONLY_US.format(SearchDataGenerator.city)
             )
         } returns Result.Error(Exception())
 
         searchDataSource.saveQuery(
-            SearchDataGenerator.city,
-            SearchDataGenerator.stateCode,
-            SearchDataGenerator.countryCode
+            SearchDataGenerator.city
         ).let {
             Assert.assertTrue(it.isError)
         }

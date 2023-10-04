@@ -35,7 +35,7 @@ fun SearchScreen(
 ) {
     val stateEnableBackIcon = navController.previousBackStackEntry?.destination != null
     val searchStateUI by searchViewModel.searchStateUI.collectAsState()
-    val textSearch = searchViewModel.textSearch
+    val textSearch by searchViewModel.textSearch.collectAsState()
     val isOpenModal by searchViewModel.openBottomSheet.collectAsState()
     CustomSimpleScaffold(
         enableNavigationIcon = stateEnableBackIcon,

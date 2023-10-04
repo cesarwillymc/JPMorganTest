@@ -6,6 +6,7 @@ import com.cesarwillymc.jpmorgantest.util.state.isError
 import com.cesarwillymc.jpmorgantest.util.state.isSuccess
 import com.cesarwillymc.jpmorgantest.utils.MockkTest
 import com.cesarwillymc.jpmorgantest.utils.data.SearchDataGenerator
+import com.cesarwillymc.jpmorgantest.utils.data.SearchDomainGenerator
 import io.mockk.coEvery
 import io.mockk.impl.annotations.RelaxedMockK
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -14,51 +15,60 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
+import java.lang.Exception
 
 /**
- * Created by Cesar Canaza on 10/3/23.
+ * Created by Cesar Canaza on 10/4/23.
  * cesarwilly.mc@gmail.com
  *
  * IOWA, United States.
  */
-class SaveLastSearchUseCaseTest : MockkTest() {
+class SearchByLatLongUseCaseTest : MockkTest() {
     @RelaxedMockK
     private lateinit var repository: SearchDataSource
-    lateinit var useCase: SaveLastSearchUseCase
+    lateinit var useCase: SearchByLatLongUseCase
 
     @OptIn(ExperimentalCoroutinesApi::class)
     @Before
     fun setUp() {
-        useCase = SaveLastSearchUseCase(repository, UnconfinedTestDispatcher())
+        useCase = SearchByLatLongUseCase(repository, UnconfinedTestDispatcher())
     }
 
     @Test
     fun execute() = runTest {
         coEvery {
-            repository.saveQuery(
-                SearchDataGenerator.city
+            repository.searchByLatLon(
+                SearchDataGenerator.lat,
+                SearchDataGenerator.long
             )
-        } returns Result.Success(Unit)
+        } returns Result.Success(SearchDomainGenerator.weatherDomain)
 
-        Assert.assertTrue(
-            useCase(
-                SearchDataGenerator.city
-            ).isSuccess
-        )
+        useCase(
+            SearchByLatLongUseCase.Params(
+                SearchDataGenerator.lat,
+                SearchDataGenerator.long
+            )
+        ).let {
+            Assert.assertTrue(it.isSuccess)
+        }
     }
 
     @Test
     fun executeError() = runTest {
         coEvery {
-            repository.saveQuery(
-                SearchDataGenerator.city
+            repository.searchByLatLon(
+                SearchDataGenerator.lat,
+                SearchDataGenerator.long
             )
         } returns Result.Error(Exception())
 
-        Assert.assertTrue(
-            useCase(
-                SearchDataGenerator.city
-            ).isError
-        )
+        useCase(
+            SearchByLatLongUseCase.Params(
+                SearchDataGenerator.lat,
+                SearchDataGenerator.long
+            )
+        ).let {
+            Assert.assertTrue(it.isError)
+        }
     }
 }

@@ -38,39 +38,14 @@ class SearchUseCaseTest : MockkTest() {
     fun execute() = runTest {
         coEvery {
             repository.searchByQuery(
-                SearchDataGenerator.city,
-                SearchDataGenerator.stateCode,
-                SearchDataGenerator.countryCode
-            )
-        } returns Result.Success(SearchDomainGenerator.weatherDomain)
-
-        useCase(
-            SearchByQueryUseCase.Params(
-                SearchDataGenerator.city,
-                SearchDataGenerator.stateCode,
-                SearchDataGenerator.countryCode
-            )
-        ).let {
-            Assert.assertTrue(it.isSuccess)
-        }
-    }
-
-    @Test
-    fun executeErrorParams() = runTest {
-        coEvery {
-            repository.searchByQuery(
-                SearchDataGenerator.city,
-                SearchDataGenerator.stateCode,
-                SearchDataGenerator.countryCode
-            )
-        } returns Result.Success(SearchDomainGenerator.weatherDomain)
-
-        useCase(
-            SearchByQueryUseCase.Params(
                 SearchDataGenerator.city
             )
+        } returns Result.Success(SearchDomainGenerator.weatherDomain)
+
+        useCase(
+            SearchDataGenerator.city
         ).let {
-            Assert.assertTrue(it.isError)
+            Assert.assertTrue(it.isSuccess)
         }
     }
 
@@ -78,18 +53,12 @@ class SearchUseCaseTest : MockkTest() {
     fun executeError() = runTest {
         coEvery {
             repository.searchByQuery(
-                SearchDataGenerator.city,
-                SearchDataGenerator.stateCode,
-                SearchDataGenerator.countryCode
+                SearchDataGenerator.city
             )
         } returns Result.Error(Exception())
 
         useCase(
-            SearchByQueryUseCase.Params(
-                SearchDataGenerator.city,
-                SearchDataGenerator.stateCode,
-                SearchDataGenerator.countryCode
-            )
+            SearchDataGenerator.city
         ).let {
             Assert.assertTrue(it.isError)
         }

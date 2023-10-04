@@ -1,10 +1,6 @@
 package com.cesarwillymc.jpmorgantest.presentation.search
 
 import android.app.Activity
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
-import androidx.compose.runtime.snapshotFlow
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cesarwillymc.jpmorgantest.domain.usecase.SaveLastSearchUseCase
@@ -38,7 +34,7 @@ class SearchViewModel @Inject constructor(
 ) : ViewModel(),
     LocationDelegate by locationDelegate {
 
-    private var _textSearch: String by mutableStateOf(EMPTY_STRING)
+    private var _textSearch = MutableStateFlow(EMPTY_STRING)
     private val _searchStateUI = MutableStateFlow(SearchStateUI())
     private val _openBottomSheet = MutableStateFlow(false)
     val searchStateUI get() = _searchStateUI
@@ -47,10 +43,13 @@ class SearchViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            snapshotFlow { textSearch }.collectLatest { newQuery ->
+            textSearch.collectLatest { newQuery ->
                 delay(DELAY_700)
                 when {
-                    newQuery.isEmpty() -> cleanSearchResult()
+                    newQuery.isEmpty() -> {
+                        cleanSearchResult()
+                    }
+
                     newQuery.length >= MIN_SEARCH_CHARACTERS -> {
                         onSearchWeatherByQuery(newQuery)
                     }
@@ -64,8 +63,8 @@ class SearchViewModel @Inject constructor(
     }
 
     fun onLoadLocation(activity: Activity) {
-        _searchStateUI.update { SearchStateUI(isLoading = true) }
         viewModelScope.launch {
+            _searchStateUI.update { SearchStateUI(isLoading = true) }
             val response = async { activity.getLocation() }.await()
             if (response == null) {
                 _searchStateUI.update { SearchStateUI(isLoading = false) }
@@ -74,12 +73,18 @@ class SearchViewModel @Inject constructor(
             }
         }
     }
+
     fun onSearchWeatherByLatLong(lat: Double, long: Double) {
         viewModelScope.launch {
             searchedByLatLonUseCase(SearchByLatLongUseCase.Params(lat, long)).let { result ->
                 when {
                     result.isSuccess -> {
-                        _searchStateUI.update { SearchStateUI(detailWeather = result.getData()) }
+                        _searchStateUI.update {
+                            SearchStateUI(
+                                isSuccess = true,
+                                detailWeather = result.getData()
+                            )
+                        }
                     }
 
                     result.isError -> {
@@ -91,12 +96,17 @@ class SearchViewModel @Inject constructor(
     }
 
     fun onSearchWeatherByQuery(query: String) {
-        _searchStateUI.update { SearchStateUI(isLoading = true) }
         viewModelScope.launch {
+            _searchStateUI.update { SearchStateUI(isLoading = true) }
             searchedByQueryUseCase(query).let { result ->
                 when {
                     result.isSuccess -> {
-                        _searchStateUI.update { SearchStateUI(detailWeather = result.getData()) }
+                        _searchStateUI.update {
+                            SearchStateUI(
+                                isSuccess = true,
+                                detailWeather = result.getData()
+                            )
+                        }
                     }
 
                     result.isError -> {
@@ -118,7 +128,7 @@ class SearchViewModel @Inject constructor(
     }
 
     fun onQueryChange(newQuery: String) {
-        _textSearch = newQuery
+        _textSearch.update { newQuery }
     }
 
     fun onCloseBottomSheet() {
