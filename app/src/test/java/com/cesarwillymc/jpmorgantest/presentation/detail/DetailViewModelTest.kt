@@ -51,7 +51,7 @@ class DetailViewModelTest : BaseViewModelTest() {
 
     @Test
     fun loadRecentlySearched() = runTest {
-        coEvery { getRecentlySearchedUseCase(Unit) } returns Result.Success(SearchDataGenerator.city)
+        coEvery { getRecentlySearchedUseCase() } returns Result.Success(SearchDataGenerator.city)
         coEvery { searchByQueryUseCase(SearchDataGenerator.city) } returns Result.Success(
             SearchDomainGenerator.weatherDomain
         )
@@ -66,7 +66,7 @@ class DetailViewModelTest : BaseViewModelTest() {
 
     @Test
     fun loadRecentlySearchedError() = runTest {
-        coEvery { getRecentlySearchedUseCase(Unit) } returns Result.Success(SearchDataGenerator.city)
+        coEvery { getRecentlySearchedUseCase() } returns Result.Success(SearchDataGenerator.city)
         coEvery { searchByQueryUseCase(SearchDataGenerator.city) } returns Result.Error(
             Exception()
         )

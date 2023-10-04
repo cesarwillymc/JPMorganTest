@@ -24,7 +24,7 @@ class MainViewModel @Inject constructor(
 
     fun loadRecentlySearched() {
         viewModelScope.launch {
-            getRecentlySearchedUseCase(Unit).let { result ->
+            getRecentlySearchedUseCase().let { result ->
                 when {
                     result.isSuccess -> {
                         _startDestination.update { MainRoute.Detail.path }

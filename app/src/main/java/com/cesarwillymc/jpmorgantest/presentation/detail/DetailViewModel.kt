@@ -35,7 +35,7 @@ class DetailViewModel @Inject constructor(
     fun loadRecentlySearched() {
         viewModelScope.launch {
             _detailStateUI.update { DetailStateUI(isLoading = true) }
-            val recentlySearched = async { getRecentlySearchedUseCase(Unit) }.await()
+            val recentlySearched = async { getRecentlySearchedUseCase() }.await()
             searchByQueryUseCase(recentlySearched.getData()).let { result ->
                 when {
                     result.isSuccess -> {
