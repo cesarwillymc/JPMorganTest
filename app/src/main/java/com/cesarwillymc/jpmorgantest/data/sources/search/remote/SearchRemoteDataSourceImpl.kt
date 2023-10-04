@@ -16,7 +16,11 @@ class SearchRemoteDataSourceImpl @Inject constructor(
     private val searchService: SearchService
 ) : SearchRemoteDataSource,
     BaseRemoteDataSource() {
-    override suspend fun search(query: String): Result<WeatherDetailResponse> = getResult {
-        searchService.search(query)
+    override suspend fun search(
+        query: String?,
+        lat: Double?,
+        lon: Double?
+    ): Result<WeatherDetailResponse> = getResult {
+        searchService.search(query, lat, lon)
     }
 }

@@ -26,70 +26,39 @@ import java.lang.Exception
 class SearchUseCaseTest : MockkTest() {
     @RelaxedMockK
     private lateinit var repository: SearchDataSource
-    lateinit var useCase: SearchUseCase
+    lateinit var useCase: SearchByQueryUseCase
 
     @OptIn(ExperimentalCoroutinesApi::class)
     @Before
     fun setUp() {
-        useCase = SearchUseCase(repository, UnconfinedTestDispatcher())
+        useCase = SearchByQueryUseCase(repository, UnconfinedTestDispatcher())
     }
 
     @Test
     fun execute() = runTest {
         coEvery {
-            repository.searchFilter(
-                SearchDataGenerator.city,
-                SearchDataGenerator.stateCode,
-                SearchDataGenerator.countryCode
+            repository.searchByQuery(
+                SearchDataGenerator.city
             )
         } returns Result.Success(SearchDomainGenerator.weatherDomain)
 
         useCase(
-            SearchUseCase.Params(
-                SearchDataGenerator.city,
-                SearchDataGenerator.stateCode,
-                SearchDataGenerator.countryCode
-            )
+            SearchDataGenerator.city
         ).let {
             Assert.assertTrue(it.isSuccess)
         }
     }
 
     @Test
-    fun executeErrorParams() = runTest {
-        coEvery {
-            repository.searchFilter(
-                SearchDataGenerator.city,
-                SearchDataGenerator.stateCode,
-                SearchDataGenerator.countryCode
-            )
-        } returns Result.Success(SearchDomainGenerator.weatherDomain)
-
-        useCase(
-            SearchUseCase.Params(
-                SearchDataGenerator.city
-            )
-        ).let {
-            Assert.assertTrue(it.isError)
-        }
-    }
-
-    @Test
     fun executeError() = runTest {
         coEvery {
-            repository.searchFilter(
-                SearchDataGenerator.city,
-                SearchDataGenerator.stateCode,
-                SearchDataGenerator.countryCode
+            repository.searchByQuery(
+                SearchDataGenerator.city
             )
         } returns Result.Error(Exception())
 
         useCase(
-            SearchUseCase.Params(
-                SearchDataGenerator.city,
-                SearchDataGenerator.stateCode,
-                SearchDataGenerator.countryCode
-            )
+            SearchDataGenerator.city
         ).let {
             Assert.assertTrue(it.isError)
         }

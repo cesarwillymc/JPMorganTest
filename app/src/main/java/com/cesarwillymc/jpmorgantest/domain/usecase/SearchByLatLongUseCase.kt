@@ -4,7 +4,6 @@ import com.cesarwillymc.jpmorgantest.data.sources.search.SearchDataSource
 import com.cesarwillymc.jpmorgantest.di.IoDispatcher
 import com.cesarwillymc.jpmorgantest.domain.base.SuspendUseCase
 import com.cesarwillymc.jpmorgantest.domain.usecase.entities.WeatherDetail
-import com.cesarwillymc.jpmorgantest.util.constants.EMPTY_STRING
 import com.cesarwillymc.jpmorgantest.util.state.Result
 import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Inject
@@ -15,19 +14,18 @@ import javax.inject.Inject
  *
  * IOWA, United States.
  */
-class SearchUseCase @Inject constructor(
+class SearchByLatLongUseCase @Inject constructor(
     private val repository: SearchDataSource,
     @IoDispatcher dispatcher: CoroutineDispatcher
-) : SuspendUseCase<SearchUseCase.Params, WeatherDetail>(
+) : SuspendUseCase<SearchByLatLongUseCase.Params, WeatherDetail>(
     coroutineDispatcher = dispatcher
 ) {
     data class Params(
-        val city: String,
-        val state: String = EMPTY_STRING,
-        val country: String = EMPTY_STRING
+        val lat: Double,
+        val long: Double
     )
 
     override suspend fun execute(parameters: Params): Result<WeatherDetail> {
-        return repository.searchFilter(parameters.city, parameters.state, parameters.country)
+        return repository.searchByLatLon(parameters.lat, parameters.long)
     }
 }

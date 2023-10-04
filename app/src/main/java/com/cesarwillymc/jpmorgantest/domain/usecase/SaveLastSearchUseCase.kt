@@ -3,10 +3,10 @@ package com.cesarwillymc.jpmorgantest.domain.usecase
 import com.cesarwillymc.jpmorgantest.data.sources.search.SearchDataSource
 import com.cesarwillymc.jpmorgantest.di.IoDispatcher
 import com.cesarwillymc.jpmorgantest.domain.base.SuspendUseCase
-import com.cesarwillymc.jpmorgantest.util.constants.EMPTY_STRING
 import com.cesarwillymc.jpmorgantest.util.state.Result
 import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Inject
+
 /**
  * Created by Cesar Canaza on 10/3/23.
  * cesarwilly.mc@gmail.com
@@ -16,16 +16,10 @@ import javax.inject.Inject
 class SaveLastSearchUseCase @Inject constructor(
     private val repository: SearchDataSource,
     @IoDispatcher dispatcher: CoroutineDispatcher
-) : SuspendUseCase<SaveLastSearchUseCase.Params, Unit>(
+) : SuspendUseCase<String, Unit>(
     coroutineDispatcher = dispatcher
 ) {
-    data class Params(
-        val city: String,
-        val state: String = EMPTY_STRING,
-        val country: String = EMPTY_STRING
-    )
-
-    override suspend fun execute(parameters: Params): Result<Unit> {
-        return repository.saveQuery(parameters.city, parameters.state, parameters.country)
+    override suspend fun execute(parameters: String): Result<Unit> {
+        return repository.saveQuery(parameters)
     }
 }

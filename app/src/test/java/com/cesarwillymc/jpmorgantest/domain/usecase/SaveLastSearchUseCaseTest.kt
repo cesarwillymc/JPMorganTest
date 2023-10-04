@@ -36,19 +36,13 @@ class SaveLastSearchUseCaseTest : MockkTest() {
     fun execute() = runTest {
         coEvery {
             repository.saveQuery(
-                SearchDataGenerator.city,
-                SearchDataGenerator.stateCode,
-                SearchDataGenerator.countryCode
+                SearchDataGenerator.city
             )
         } returns Result.Success(Unit)
 
         Assert.assertTrue(
             useCase(
-                SaveLastSearchUseCase.Params(
-                    SearchDataGenerator.city,
-                    SearchDataGenerator.stateCode,
-                    SearchDataGenerator.countryCode
-                )
+                SearchDataGenerator.city
             ).isSuccess
         )
     }
@@ -57,19 +51,13 @@ class SaveLastSearchUseCaseTest : MockkTest() {
     fun executeError() = runTest {
         coEvery {
             repository.saveQuery(
-                SearchDataGenerator.city,
-                SearchDataGenerator.stateCode,
-                SearchDataGenerator.countryCode
+                SearchDataGenerator.city
             )
         } returns Result.Error(Exception())
 
         Assert.assertTrue(
             useCase(
-                SaveLastSearchUseCase.Params(
-                    SearchDataGenerator.city,
-                    SearchDataGenerator.stateCode,
-                    SearchDataGenerator.countryCode
-                )
+                SearchDataGenerator.city
             ).isError
         )
     }

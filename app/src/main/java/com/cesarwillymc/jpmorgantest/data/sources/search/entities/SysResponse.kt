@@ -9,7 +9,7 @@ package com.cesarwillymc.jpmorgantest.data.sources.search.entities
 data class SysResponse(
     val country: String,
     val id: Int,
-    val sunrise: Int,
-    val sunset: Int,
+    val sunrise: Long,
+    val sunset: Long,
     val type: Int
 )

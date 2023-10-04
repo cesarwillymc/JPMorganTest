@@ -2,6 +2,7 @@ package com.cesarwillymc.jpmorgantest.data.di
 
 import com.cesarwillymc.jpmorgantest.BuildConfig
 import com.cesarwillymc.jpmorgantest.data.sources.network.WeatherInterceptor
+import com.cesarwillymc.jpmorgantest.data.sources.network.util.DefaultClient
 import com.cesarwillymc.jpmorgantest.data.sources.search.service.SearchService
 import com.google.gson.Gson
 import dagger.Module
@@ -41,6 +42,7 @@ class NetworkModule {
 
     @Singleton
     @Provides
+    @DefaultClient
     fun providesApiKeyOkhttp(
         interceptor: WeatherInterceptor
     ) = OkHttpClient.Builder()
@@ -50,7 +52,7 @@ class NetworkModule {
     @Singleton
     @Provides
     fun providesSearchService(
-        okHttpClient: OkHttpClient
+        @DefaultClient okHttpClient: OkHttpClient
     ) = provideService<SearchService>(okHttpClient)
 
     private inline fun <reified T : Any> provideService(

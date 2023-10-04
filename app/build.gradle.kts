@@ -58,6 +58,7 @@ android {
 dependencies {
     // Dagger
     implementation("com.google.dagger:hilt-android:2.48")
+    implementation("com.google.android.gms:play-services-location:21.0.1")
     kapt("com.google.dagger:hilt-android-compiler:2.48")
     // View model DI
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
@@ -75,6 +76,12 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3:1.2.0-alpha08")
     implementation("androidx.navigation:navigation-compose:2.7.3")
+
+    // Constraint
+    implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1")
+
+    // Lottie
+    implementation("com.airbnb.android:lottie-compose:4.2.0")
 
     // View Model
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
@@ -95,6 +102,10 @@ dependencies {
 
     // Shared Preference
     implementation("androidx.security:security-crypto:1.1.0-alpha06")
+
+    // Permission
+    implementation("com.google.accompanist:accompanist-permissions:0.25.0")
+
 
     // AndroidX Test Core library for testing Android components
     androidTestImplementation("androidx.test:core:1.5.0")

@@ -1,5 +1,7 @@
 package com.cesarwillymc.jpmorgantest.domain.base
 
+import android.util.Log
+import com.cesarwillymc.jpmorgantest.util.constants.LOG_DOMAIN
 import com.cesarwillymc.jpmorgantest.util.state.Result
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
@@ -23,6 +25,7 @@ abstract class SuspendUseCase<in Params, out Results>(
                 execute(parameters)
             }
         } catch (e: Exception) {
+            Log.e(LOG_DOMAIN, e.message.toString())
             Result.Error(e)
         }
     }

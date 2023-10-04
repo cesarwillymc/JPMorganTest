@@ -4,10 +4,10 @@ import com.cesarwillymc.jpmorgantest.data.sources.search.entities.WeatherDetailR
 import com.google.gson.Gson
 
 object SearchDataGenerator {
-    const val countryCode = "US"
     const val city = "Fairfield"
-    const val stateCode = "IA"
-    const val querySearch = "Fairfield,IA,US"
+    const val lat = 41.2668
+    const val long = -73.3162
+    const val querySearch = "Fairfield,US"
     const val jsonWeatherString = """
         {
    "coord":{
