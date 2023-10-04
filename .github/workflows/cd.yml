@@ -39,7 +39,8 @@ jobs:
       - name: Update local.properties
         run: |
           echo "WEATHER_KEY=${{ secrets.WEATHER_KEY }}" >> local.properties
-          echo "NAME_DB=${{ secrets.NAME_DB }}" >> local.properties
+          echo "SHARED_PREFERENCES_NAME=${{ secrets.SHARED_PREFERENCES_NAME }}" >> local.properties
+          echo "BASE_URL=${{ secrets.BASE_URL }}" >> local.properties
 
       - name: Execute validations
         run: ./gradlew executeValidations
