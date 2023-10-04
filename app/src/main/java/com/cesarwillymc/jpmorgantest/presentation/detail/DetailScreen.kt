@@ -1,16 +1,13 @@
 package com.cesarwillymc.jpmorgantest.presentation.detail
 
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Column
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.cesarwillymc.jpmorgantest.R
 import com.cesarwillymc.jpmorgantest.presentation.detail.components.DetailContent
+import com.cesarwillymc.jpmorgantest.presentation.detail.components.TopBarDetailScreen
 import com.cesarwillymc.jpmorgantest.ui.components.CustomFullScreenLoading
 import com.cesarwillymc.jpmorgantest.ui.components.CustomLottieMessage
 import com.cesarwillymc.jpmorgantest.ui.components.CustomSimpleScaffold
@@ -31,10 +28,10 @@ fun DetailScreen(
     CustomSimpleScaffold(
         enableNavigationIcon = false,
         title = {
-            Column(modifier = Modifier.clickable(onClick = navigateToSearch)) {
-                Text(text = stringResource(R.string.desc_location))
-                Text(text = detailScreen?.name.orEmpty())
-            }
+            TopBarDetailScreen(
+                navigateToSearch = navigateToSearch,
+                title = detailScreen?.cityName.orEmpty()
+            )
         }
     ) {
         if (detailStateUI.isLoading) {
@@ -52,6 +49,5 @@ fun DetailScreen(
                 detail = detailScreen
             )
         }
-
     }
 }

@@ -23,5 +23,4 @@ class SearchRemoteDataSourceImpl @Inject constructor(
     ): Result<WeatherDetailResponse> = getResult {
         searchService.search(query, lat, lon)
     }
-
 }

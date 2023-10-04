@@ -10,7 +10,6 @@ import android.location.LocationManager
 import android.net.Uri
 import android.os.Looper
 import android.provider.Settings
-import android.util.Log
 import androidx.core.content.ContextCompat
 import com.cesarwillymc.jpmorgantest.presentation.base.entities.LatLngPresentation
 import com.cesarwillymc.jpmorgantest.util.constants.LOCATION_EXPIRATION_TIME
@@ -18,7 +17,6 @@ import com.cesarwillymc.jpmorgantest.util.constants.LOCATION_INTERVAL
 import com.cesarwillymc.jpmorgantest.util.constants.LOCATION_NUM_UPDATES
 import com.cesarwillymc.jpmorgantest.util.constants.LOCATION_REFRESH_TIME
 import com.cesarwillymc.jpmorgantest.util.constants.LOCATION_TIME_THRESHOLD
-import com.cesarwillymc.jpmorgantest.util.constants.LOG_DOMAIN
 import com.cesarwillymc.jpmorgantest.util.constants.ZERO
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
@@ -28,10 +26,10 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.CancellationToken
 import com.google.android.gms.tasks.CancellationTokenSource
 import com.google.android.gms.tasks.OnTokenCanceledListener
+import kotlinx.coroutines.suspendCancellableCoroutine
 import java.util.Date
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
-import kotlinx.coroutines.suspendCancellableCoroutine
 
 /**
  * Created by Cesar Canaza on 10/4/23.

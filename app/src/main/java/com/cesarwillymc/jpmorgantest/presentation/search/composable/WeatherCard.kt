@@ -28,6 +28,7 @@ import coil.compose.rememberImagePainter
 import com.cesarwillymc.jpmorgantest.R
 import com.cesarwillymc.jpmorgantest.domain.usecase.entities.WeatherDetail
 import com.cesarwillymc.jpmorgantest.util.extension.formatImageUrl
+import com.cesarwillymc.jpmorgantest.util.extension.orEmpty
 
 @Composable
 fun WeatherCard(weather: WeatherDetail?) {
@@ -46,10 +47,10 @@ fun WeatherCard(weather: WeatherDetail?) {
                         .clip(shape = CircleShape)
                 ) {
                     Image(
-                        painter = rememberImagePainter(weather.weather.firstOrNull()?.icon.formatImageUrl()),
+                        painter = rememberImagePainter(weather.icon.formatImageUrl()),
                         contentDescription = stringResource(
                             R.string.desc_type_img_weather,
-                            weather.weather.firstOrNull()?.description.orEmpty()
+                            weather.weatherDescription
                         ),
                         modifier = Modifier.fillMaxSize(),
                         contentScale = ContentScale.Crop
@@ -57,14 +58,20 @@ fun WeatherCard(weather: WeatherDetail?) {
                 }
                 Spacer(modifier = Modifier.size(dimensionResource(id = R.dimen.Small100)))
                 Column(verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.Small50))) {
-                    Text(text = weather.name, style = MaterialTheme.typography.titleMedium)
+                    Text(text = weather.cityName, style = MaterialTheme.typography.titleMedium)
                     HorizontalDivider(modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.Small50)))
                     Text(
-                        text = weather.weather.firstOrNull()?.main.orEmpty(),
+                        text = stringResource(
+                            id = R.string.desc_humidity,
+                            weather.humidity.orEmpty()
+                        ),
                         style = MaterialTheme.typography.titleSmall
                     )
                     Text(
-                        text = stringResource(R.string.format_celsius, weather.main.feelsLike),
+                        text = stringResource(
+                            R.string.desc_temperature,
+                            weather.temperature.orEmpty()
+                        ),
                         style = MaterialTheme.typography.titleSmall
                     )
                 }
@@ -77,6 +84,16 @@ fun WeatherCard(weather: WeatherDetail?) {
 @Preview(name = "Light Theme", showBackground = true)
 fun CustomCharacterCardPreview() {
     WeatherCard(
-        weather = null
+        weather = WeatherDetail(
+            cityName = "Fairfield",
+            temperature = 298.43,
+            weatherDescription = "clear sky",
+            humidity = 64,
+            pressure = 1019,
+            windSpeed = 2.58,
+            sunrise = 1696330297L,
+            sunset = 1696372375L,
+            icon = "01d"
+        )
     )
 }

@@ -16,7 +16,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import com.cesarwillymc.jpmorgantest.R
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 /**
  * Created by Cesar Canaza on 10/4/23.
@@ -25,9 +24,8 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
  * IOWA, United States.
  */
 
-@ExperimentalCoroutinesApi
 @Composable
-fun SearchEmptyView(query: String) {
+fun SearchEmptyView() {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Spacer(modifier = Modifier.padding(dimensionResource(id = R.dimen.Normal100)))
         Icon(
@@ -44,7 +42,7 @@ fun SearchEmptyView(query: String) {
         )
         Spacer(modifier = Modifier.padding(dimensionResource(id = R.dimen.Small100)))
         Text(
-            text = stringResource(R.string.desc_dont_found, query),
+            text = stringResource(R.string.desc_dont_found),
             modifier = Modifier.fillMaxWidth(),
             style = MaterialTheme.typography.headlineSmall,
             textAlign = TextAlign.Center

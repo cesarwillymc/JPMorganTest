@@ -195,7 +195,6 @@ fun SearchTextField(
     )
 }
 
-
 @Composable
 @Preview(name = "Light Theme", showBackground = true)
 fun CustomSearchViewComponentPreview() {

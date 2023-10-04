@@ -1,7 +1,6 @@
 package com.cesarwillymc.jpmorgantest.ui.navigation.graph
 
 import android.app.Activity
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.navigation.NavHostController
@@ -44,6 +43,5 @@ fun CustomNavGraph(
                 activity = activity
             )
         }
-
     }
 }

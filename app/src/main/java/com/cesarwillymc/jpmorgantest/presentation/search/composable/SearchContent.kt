@@ -31,16 +31,12 @@ import kotlin.random.Random
  */
 @Composable
 fun SearchContent(
-    textQuery: String,
     searchStateUI: SearchStateUI,
     onLoadLocation: () -> Unit,
     onSaveWeather: () -> Unit,
     activity: Activity
 ) {
-
-    var launchPermission by rememberSaveable {
-        mutableStateOf<Int?>(null)
-    }
+    var launchPermission by rememberSaveable { mutableStateOf<Int?>(null) }
     PermissionContent(
         activity = activity,
         permissionGranted = {
@@ -81,25 +77,26 @@ fun SearchContent(
                 }
             )
         }
-
-
-        if (searchStateUI.isSuccess && searchStateUI.detailWeather == null) {
-            item {
-                SearchEmptyView(textQuery)
+        when {
+            (searchStateUI.isError || searchStateUI.isSuccess) &&
+                searchStateUI.detailWeather == null -> {
+                item {
+                    SearchEmptyView()
+                }
             }
-        } else if (searchStateUI.detailWeather != null) {
 
-            item { WeatherCard(searchStateUI.detailWeather) }
-            item {
-                CustomPrimaryButton(
-                    title = stringResource(R.string.desc_btn_save_weather),
-                    textColor = MaterialTheme.colorScheme.background,
-                    isEnabled = true,
-                    backGroundColor = MaterialTheme.colorScheme.primary,
-                    onClick = onSaveWeather
-                )
+            searchStateUI.detailWeather != null -> {
+                item { WeatherCard(searchStateUI.detailWeather) }
+                item {
+                    CustomPrimaryButton(
+                        title = stringResource(R.string.desc_btn_save_weather),
+                        textColor = MaterialTheme.colorScheme.background,
+                        isEnabled = true,
+                        backGroundColor = MaterialTheme.colorScheme.primary,
+                        onClick = onSaveWeather
+                    )
+                }
             }
         }
-
     }
 }

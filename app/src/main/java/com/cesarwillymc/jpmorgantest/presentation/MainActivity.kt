@@ -11,7 +11,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import com.cesarwillymc.jpmorgantest.ui.navigation.graph.CustomNavGraph
-import com.cesarwillymc.jpmorgantest.ui.navigation.route.MainRoute
 import com.cesarwillymc.jpmorgantest.ui.theme.JPMorganTestTheme
 import dagger.hilt.android.AndroidEntryPoint
 

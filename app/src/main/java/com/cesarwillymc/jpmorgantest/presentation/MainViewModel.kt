@@ -6,10 +6,10 @@ import com.cesarwillymc.jpmorgantest.domain.usecase.GetRecentlySearchedUseCase
 import com.cesarwillymc.jpmorgantest.ui.navigation.route.MainRoute
 import com.cesarwillymc.jpmorgantest.util.state.isSuccess
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(

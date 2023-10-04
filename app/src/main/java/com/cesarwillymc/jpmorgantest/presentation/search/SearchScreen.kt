@@ -11,7 +11,6 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import androidx.navigation.compose.currentBackStackEntryAsState
 import com.cesarwillymc.jpmorgantest.R
 import com.cesarwillymc.jpmorgantest.presentation.search.composable.SearchContent
 import com.cesarwillymc.jpmorgantest.ui.components.CustomExtendedSheetContent
@@ -31,22 +30,23 @@ fun SearchScreen(
     navigateToDetail: () -> Unit,
     navigateUp: () -> Unit,
     navController: NavController,
-    activity:Activity,
+    activity: Activity,
     searchViewModel: SearchViewModel = hiltViewModel()
 ) {
-    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val stateEnableBackIcon = navController.previousBackStackEntry?.destination != null
     val searchStateUI by searchViewModel.searchStateUI.collectAsState()
     val textSearch = searchViewModel.textSearch
     val isOpenModal by searchViewModel.openBottomSheet.collectAsState()
     CustomSimpleScaffold(
-        enableNavigationIcon = navBackStackEntry?.destination?.route != null,
+        enableNavigationIcon = stateEnableBackIcon,
         title = {
             SearchViewComponent(
                 queryUiState = textSearch,
                 onQueryChange = searchViewModel::onQueryChange,
                 onClickBackWhenTextIsEmpty = {
                     searchViewModel.onQueryChange(EMPTY_STRING)
-                }
+                },
+                hintText = stringResource(R.string.desc_search_city)
             )
         },
         navigateUp = navigateUp
@@ -57,7 +57,6 @@ fun SearchScreen(
                 searchViewModel.onLoadLocation(activity)
             },
             onSaveWeather = searchViewModel::onSaveWeatherDetail,
-            textQuery = textSearch,
             activity = activity
         )
     }
@@ -75,10 +74,10 @@ fun SearchScreen(
                     forceBigSize = true,
                     onClick = {
                         searchViewModel.onCloseBottomSheet()
-                        if (navBackStackEntry?.destination?.route != null) {
-                            navigateToDetail()
-                        } else {
+                        if (stateEnableBackIcon) {
                             navigateUp()
+                        } else {
+                            navigateToDetail()
                         }
                     },
                     titleButton = stringResource(R.string.til_close)
@@ -86,10 +85,10 @@ fun SearchScreen(
             },
             onDismissRequest = {
                 searchViewModel.onCloseBottomSheet()
-                if (navBackStackEntry?.destination?.route != null) {
-                    navigateToDetail()
-                } else {
+                if (stateEnableBackIcon) {
                     navigateUp()
+                } else {
+                    navigateToDetail()
                 }
             }
         )

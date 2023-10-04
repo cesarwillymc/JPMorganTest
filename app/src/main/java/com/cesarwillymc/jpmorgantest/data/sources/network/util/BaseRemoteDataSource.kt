@@ -8,9 +8,9 @@ import com.cesarwillymc.jpmorgantest.util.constants.LOG_DATA
 import com.cesarwillymc.jpmorgantest.util.state.Result
 import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
-import java.io.IOException
 import okhttp3.ResponseBody
 import retrofit2.HttpException
+import java.io.IOException
 
 /**
  * Created by Cesar Canaza on 10/3/23.
@@ -25,7 +25,7 @@ abstract class BaseRemoteDataSource : ErrorHandler {
     ): Result<Out> = try {
         Result.Success(call())
     } catch (e: Exception) {
-        Log.e(LOG_DATA,e.message.toString())
+        Log.e(LOG_DATA, e.message.toString())
         Result.Error(exception = getError(e))
     }
 

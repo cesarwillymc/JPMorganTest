@@ -13,5 +13,4 @@ interface LocationDelegate {
 
     val weatherDetail: StateFlow<WeatherDetail?>
     fun saveWeatherDetail(detail: WeatherDetail)
-
 }

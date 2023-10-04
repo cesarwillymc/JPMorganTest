@@ -107,5 +107,4 @@ fun CustomSheetContentDarkPreview() {
         onClick = {},
         titleButton = stringResource(R.string.til_close)
     )
-
 }

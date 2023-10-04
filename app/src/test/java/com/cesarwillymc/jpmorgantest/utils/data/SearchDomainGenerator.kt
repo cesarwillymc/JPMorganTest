@@ -1,11 +1,6 @@
 package com.cesarwillymc.jpmorgantest.utils.data
 
-import com.cesarwillymc.jpmorgantest.domain.usecase.entities.Coord
-import com.cesarwillymc.jpmorgantest.domain.usecase.entities.Main
-import com.cesarwillymc.jpmorgantest.domain.usecase.entities.Sys
-import com.cesarwillymc.jpmorgantest.domain.usecase.entities.Weather
 import com.cesarwillymc.jpmorgantest.domain.usecase.entities.WeatherDetail
-import com.cesarwillymc.jpmorgantest.domain.usecase.entities.Wind
 import com.cesarwillymc.jpmorgantest.utils.data.SearchDataGenerator.weatherData
 
 object SearchDomainGenerator {

@@ -16,7 +16,7 @@ interface SearchService {
         @Query(QUERY_KEY) query: String?,
         @Query(LAT_KEY) lat: Double?,
         @Query(LON_KEY) lon: Double?,
-        @Query(UNITS_KEY) units: String = UNITS_VALUE,
+        @Query(UNITS_KEY) units: String = UNITS_VALUE
     ): WeatherDetailResponse
 
     private companion object {

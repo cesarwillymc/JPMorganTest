@@ -20,7 +20,6 @@ import com.cesarwillymc.jpmorgantest.util.state.getData
 import com.cesarwillymc.jpmorgantest.util.state.isError
 import com.cesarwillymc.jpmorgantest.util.state.isSuccess
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -28,6 +27,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @HiltViewModel
 class SearchViewModel @Inject constructor(
@@ -111,7 +111,7 @@ class SearchViewModel @Inject constructor(
         searchStateUI.value.detailWeather?.let { weatherDetail ->
             saveWeatherDetail(weatherDetail)
             viewModelScope.launch {
-                saveLastSearchUseCase(weatherDetail.name)
+                saveLastSearchUseCase(weatherDetail.cityName)
             }
             onOpenBottomSheet()
         }
@@ -128,5 +128,4 @@ class SearchViewModel @Inject constructor(
     fun onOpenBottomSheet() {
         _openBottomSheet.update { true }
     }
-
 }

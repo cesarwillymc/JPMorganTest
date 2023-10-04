@@ -33,12 +33,12 @@ import kotlinx.coroutines.launch
  * IOWA, United States.
  */
 @Composable
+@SuppressWarnings("LongMethod")
 fun PermissionContent(
     activity: Activity,
     permissionGranted: () -> Unit,
     launchPermission: Int?
 ) {
-
     var locationPermissionsGranted by remember { mutableStateOf(activity.areLocationPermissionsAlreadyGranted()) }
     var shouldShowPermissionRationale by remember {
         mutableStateOf(
@@ -77,9 +77,8 @@ fun PermissionContent(
             if (locationPermissionsGranted) {
                 permissionGranted()
             }
-
-        })
-
+        }
+    )
 
     val scope = rememberCoroutineScope()
     val snackbarHostState = remember { SnackbarHostState() }

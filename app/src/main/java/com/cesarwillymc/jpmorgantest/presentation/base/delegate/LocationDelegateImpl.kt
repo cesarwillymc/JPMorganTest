@@ -2,12 +2,12 @@ package com.cesarwillymc.jpmorgantest.presentation.base.delegate
 
 import com.cesarwillymc.jpmorgantest.di.MainDispatcher
 import com.cesarwillymc.jpmorgantest.domain.usecase.entities.WeatherDetail
-import javax.inject.Inject
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
+import javax.inject.Inject
 
 /**
  * Created by cesarwillymamanicanaza on 7/06/22.

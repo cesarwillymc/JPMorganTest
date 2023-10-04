@@ -25,7 +25,7 @@ abstract class SuspendUseCase<in Params, out Results>(
                 execute(parameters)
             }
         } catch (e: Exception) {
-            Log.e(LOG_DOMAIN,e.message.toString())
+            Log.e(LOG_DOMAIN, e.message.toString())
             Result.Error(e)
         }
     }

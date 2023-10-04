@@ -26,7 +26,7 @@ fun CustomSimpleScaffold(
     @DrawableRes backIcon: Int = R.drawable.ic_back,
     navigateUp: () -> Unit = {},
     actions: @Composable RowScope.() -> Unit = {},
-    content: @Composable () -> Unit,
+    content: @Composable () -> Unit
 ) {
     Scaffold(
         modifier = modifier.fillMaxSize(),
@@ -35,7 +35,6 @@ fun CustomSimpleScaffold(
                 title = title,
                 navigationIcon = {
                     if (enableNavigationIcon) {
-
                         IconButton(
                             onClick = navigateUp,
                             modifier = modifier
