@@ -32,12 +32,16 @@ class SearchLocalDataSourceImpl @Inject constructor(
 
     override fun recentlySearched(): Result<String> {
         return try {
-            return Result.Success(
-                sharedPreferences.getString(
-                    RECENTLY_SEARCHED,
-                    EMPTY_STRING
-                ).orEmpty()
-            )
+            return sharedPreferences.getString(
+                RECENTLY_SEARCHED,
+                EMPTY_STRING
+            ).let {
+                if (it.isNullOrBlank()) {
+                    Result.Error(Exception())
+                } else {
+                    Result.Success(it)
+                }
+            }
         } catch (e: Exception) {
             Result.Error(e)
         }

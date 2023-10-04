@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">JPMorganTest</string>
+    <string name="til_congratulations">Congratulations</string>
+    <string name="desc_congratulations">The change was successfully</string>
+    <string name="til_close">Close</string>
+    <string name="desc_back">onclick Back</string>
 </resources>

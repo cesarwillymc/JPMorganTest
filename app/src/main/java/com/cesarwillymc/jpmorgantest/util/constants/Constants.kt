@@ -8,6 +8,7 @@ const val ONE = 1
 const val ONE_F = 1f
 
 const val FIVE = 5
+const val splashDelay = 2000L
 
 const val FORMAT_DEEPLINK = "%s%s"
 const val EVENT_FAVORITE = "e_favorite"
