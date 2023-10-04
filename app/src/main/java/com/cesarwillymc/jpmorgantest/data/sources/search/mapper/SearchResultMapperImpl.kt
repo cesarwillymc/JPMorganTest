@@ -9,6 +9,12 @@ import com.cesarwillymc.jpmorgantest.domain.usecase.entities.WeatherDetail
 import com.cesarwillymc.jpmorgantest.domain.usecase.entities.Wind
 import javax.inject.Inject
 
+/**
+ * Created by Cesar Canaza on 10/3/23.
+ * cesarwilly.mc@gmail.com
+ *
+ * IOWA, United States.
+ */
 class SearchResultMapperImpl @Inject constructor() : SearchResultMapper {
     override fun fromResponseToDomain(info: WeatherDetailResponse): WeatherDetail {
         return WeatherDetail(

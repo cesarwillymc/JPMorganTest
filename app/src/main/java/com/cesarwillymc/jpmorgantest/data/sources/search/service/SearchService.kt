@@ -4,6 +4,12 @@ import com.cesarwillymc.jpmorgantest.data.sources.search.entities.WeatherDetailR
 import retrofit2.http.GET
 import retrofit2.http.Query
 
+/**
+ * Created by Cesar Canaza on 10/3/23.
+ * cesarwilly.mc@gmail.com
+ *
+ * IOWA, United States.
+ */
 interface SearchService {
     @GET(SEARCH)
     suspend fun search(

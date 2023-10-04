@@ -6,6 +6,12 @@ import com.cesarwillymc.jpmorgantest.data.sources.search.service.SearchService
 import com.cesarwillymc.jpmorgantest.util.state.Result
 import javax.inject.Inject
 
+/**
+ * Created by Cesar Canaza on 10/3/23.
+ * cesarwilly.mc@gmail.com
+ *
+ * IOWA, United States.
+ */
 class SearchRemoteDataSourceImpl @Inject constructor(
     private val searchService: SearchService
 ) : SearchRemoteDataSource,

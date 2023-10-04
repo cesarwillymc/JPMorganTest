@@ -6,6 +6,12 @@ import com.cesarwillymc.jpmorgantest.util.constants.EMPTY_STRING
 import com.cesarwillymc.jpmorgantest.util.state.Result
 import javax.inject.Inject
 
+/**
+ * Created by Cesar Canaza on 10/3/23.
+ * cesarwilly.mc@gmail.com
+ *
+ * IOWA, United States.
+ */
 class SearchLocalDataSourceImpl @Inject constructor(
     private val sharedPreferences: SharedPreferences
 ) : SearchLocalDataSource {

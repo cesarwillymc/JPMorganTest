@@ -9,6 +9,12 @@ import com.cesarwillymc.jpmorgantest.util.state.Result
 import com.cesarwillymc.jpmorgantest.util.state.map
 import javax.inject.Inject
 
+/**
+ * Created by Cesar Canaza on 10/3/23.
+ * cesarwilly.mc@gmail.com
+ *
+ * IOWA, United States.
+ */
 class SearchRepository @Inject constructor(
     private val remoteDataSource: SearchRemoteDataSource,
     private val searchResultMapper: SearchResultMapper,

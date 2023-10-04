@@ -2,13 +2,13 @@ package com.cesarwillymc.jpmorgantest.data.sources.search.local
 
 import android.content.SharedPreferences
 import androidx.core.content.edit
-import com.cesarwillymc.jpmorgantest.data.sources.search.utils.MockkTest
-import com.cesarwillymc.jpmorgantest.data.sources.search.utils.data.SearchDataGenerator
 import com.cesarwillymc.jpmorgantest.util.constants.EMPTY_STRING
 import com.cesarwillymc.jpmorgantest.util.constants.ONE
 import com.cesarwillymc.jpmorgantest.util.state.dataOrNull
 import com.cesarwillymc.jpmorgantest.util.state.isError
 import com.cesarwillymc.jpmorgantest.util.state.isSuccess
+import com.cesarwillymc.jpmorgantest.utils.MockkTest
+import com.cesarwillymc.jpmorgantest.utils.data.SearchDataGenerator
 import io.mockk.coEvery
 import io.mockk.impl.annotations.RelaxedMockK
 import io.mockk.verify
