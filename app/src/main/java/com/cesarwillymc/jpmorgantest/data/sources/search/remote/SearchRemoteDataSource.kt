@@ -11,6 +11,8 @@ import com.cesarwillymc.jpmorgantest.util.state.Result
  */
 interface SearchRemoteDataSource {
     suspend fun search(
-        query: String
+        query: String? = null,
+        lat: Double? = null,
+        lon: Double? = null
     ): Result<WeatherDetailResponse>
 }

@@ -8,10 +8,18 @@ const val ONE = 1
 const val ONE_F = 1f
 
 const val FIVE = 5
-const val splashDelay = 2000L
-
+const val DELAY_700 = 700L
+const val MIN_SEARCH_CHARACTERS = 3
 const val FORMAT_DEEPLINK = "%s%s"
-const val EVENT_FAVORITE = "e_favorite"
-const val EVENT_REM_FAVORITE = "e_rem_favorite"
-const val TYPE_IDENTIFIER = "ID"
-const val TYPE_ACCOUNT = "account"
+const val FORMAT_ONLY_US = "%s,US"
+const val FORMAT_IMAGE = "https://openweathermap.org/img/wn/%s@2x.png"
+const val DEFAULT_FORMAT = "01d"
+const val LOG_DATA = "ERROR_DATA"
+const val LOG_DOMAIN = "ERROR_DOMAIN"
+
+
+const val LOCATION_REFRESH_TIME = 5000L
+const val LOCATION_INTERVAL = 10000L
+const val LOCATION_NUM_UPDATES = 2
+const val LOCATION_EXPIRATION_TIME = 300000L
+const val LOCATION_TIME_THRESHOLD = 120000L

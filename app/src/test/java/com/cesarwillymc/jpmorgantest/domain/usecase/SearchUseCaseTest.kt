@@ -26,18 +26,18 @@ import java.lang.Exception
 class SearchUseCaseTest : MockkTest() {
     @RelaxedMockK
     private lateinit var repository: SearchDataSource
-    lateinit var useCase: SearchUseCase
+    lateinit var useCase: SearchByQueryUseCase
 
     @OptIn(ExperimentalCoroutinesApi::class)
     @Before
     fun setUp() {
-        useCase = SearchUseCase(repository, UnconfinedTestDispatcher())
+        useCase = SearchByQueryUseCase(repository, UnconfinedTestDispatcher())
     }
 
     @Test
     fun execute() = runTest {
         coEvery {
-            repository.searchFilter(
+            repository.searchByQuery(
                 SearchDataGenerator.city,
                 SearchDataGenerator.stateCode,
                 SearchDataGenerator.countryCode
@@ -45,7 +45,7 @@ class SearchUseCaseTest : MockkTest() {
         } returns Result.Success(SearchDomainGenerator.weatherDomain)
 
         useCase(
-            SearchUseCase.Params(
+            SearchByQueryUseCase.Params(
                 SearchDataGenerator.city,
                 SearchDataGenerator.stateCode,
                 SearchDataGenerator.countryCode
@@ -58,7 +58,7 @@ class SearchUseCaseTest : MockkTest() {
     @Test
     fun executeErrorParams() = runTest {
         coEvery {
-            repository.searchFilter(
+            repository.searchByQuery(
                 SearchDataGenerator.city,
                 SearchDataGenerator.stateCode,
                 SearchDataGenerator.countryCode
@@ -66,7 +66,7 @@ class SearchUseCaseTest : MockkTest() {
         } returns Result.Success(SearchDomainGenerator.weatherDomain)
 
         useCase(
-            SearchUseCase.Params(
+            SearchByQueryUseCase.Params(
                 SearchDataGenerator.city
             )
         ).let {
@@ -77,7 +77,7 @@ class SearchUseCaseTest : MockkTest() {
     @Test
     fun executeError() = runTest {
         coEvery {
-            repository.searchFilter(
+            repository.searchByQuery(
                 SearchDataGenerator.city,
                 SearchDataGenerator.stateCode,
                 SearchDataGenerator.countryCode
@@ -85,7 +85,7 @@ class SearchUseCaseTest : MockkTest() {
         } returns Result.Error(Exception())
 
         useCase(
-            SearchUseCase.Params(
+            SearchByQueryUseCase.Params(
                 SearchDataGenerator.city,
                 SearchDataGenerator.stateCode,
                 SearchDataGenerator.countryCode

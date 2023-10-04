@@ -1,11 +1,8 @@
 package com.cesarwillymc.jpmorgantest.util.extension
 
-fun formatCityStateCountry(city: String, stateCode: String, countryCode: String): String {
-    return if (stateCode.isNotBlank() && countryCode.isNotBlank()) {
-        "$city,$stateCode,$countryCode"
-    } else if (stateCode.isNotBlank()) {
-        "$city,$stateCode"
-    } else {
-        city
-    }
-}
+import com.cesarwillymc.jpmorgantest.util.constants.DEFAULT_FORMAT
+import com.cesarwillymc.jpmorgantest.util.constants.FORMAT_IMAGE
+
+fun String?.formatImageUrl() = FORMAT_IMAGE.format(
+    this ?: DEFAULT_FORMAT
+)

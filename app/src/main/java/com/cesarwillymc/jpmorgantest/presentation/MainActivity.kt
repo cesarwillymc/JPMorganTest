@@ -30,20 +30,17 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             JPMorganTestTheme {
-                val navigateToMainScreen by mainViewModel.navigateToMainScreen.collectAsState()
+                val startDestination by mainViewModel.startDestination.collectAsState()
                 val navController = rememberNavController()
 
-                val startDestination = if (navigateToMainScreen) {
-                    MainRoute.Detail.path
-                } else {
-                    MainRoute.Search.path
-                }
-
-                Box(modifier = Modifier.fillMaxSize()) {
-                    CustomNavGraph(
-                        navController = navController,
-                        startDestination = startDestination
-                    )
+                if (!startDestination.isNullOrBlank()) {
+                    Box(modifier = Modifier.fillMaxSize()) {
+                        CustomNavGraph(
+                            navController = navController,
+                            startDestination = startDestination.orEmpty(),
+                            activity = this@MainActivity
+                        )
+                    }
                 }
             }
         }

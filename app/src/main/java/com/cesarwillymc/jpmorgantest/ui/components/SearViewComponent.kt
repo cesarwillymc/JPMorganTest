@@ -50,10 +50,10 @@ import com.cesarwillymc.jpmorgantest.util.constants.ONE
  * IOWA, United States.
  */
 @Composable
-fun SearViewComponent(
+fun SearchViewComponent(
     queryUiState: String,
     onQueryChange: (String) -> Unit,
-    onGoClicked: () -> Unit,
+    onGoClicked: () -> Unit = {},
     onClickBackWhenTextIsEmpty: () -> Unit,
     focusRequester: FocusRequester = FocusRequester(),
     hintText: String = EMPTY_STRING
@@ -199,7 +199,7 @@ fun SearchTextField(
 @Composable
 @Preview(name = "Light Theme", showBackground = true)
 fun CustomSearchViewComponentPreview() {
-    SearViewComponent(
+    SearchViewComponent(
         queryUiState = "",
         onQueryChange = {},
         onGoClicked = {},

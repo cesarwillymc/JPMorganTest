@@ -3,6 +3,7 @@ package com.cesarwillymc.jpmorgantest.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cesarwillymc.jpmorgantest.domain.usecase.GetRecentlySearchedUseCase
+import com.cesarwillymc.jpmorgantest.ui.navigation.route.MainRoute
 import com.cesarwillymc.jpmorgantest.util.state.isSuccess
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -14,8 +15,8 @@ import kotlinx.coroutines.launch
 class MainViewModel @Inject constructor(
     private val getRecentlySearchedUseCase: GetRecentlySearchedUseCase
 ) : ViewModel() {
-    private val _navigateToMainScreen = MutableStateFlow(false)
-    val navigateToMainScreen get() = _navigateToMainScreen
+    private val _startDestination = MutableStateFlow<String?>(null)
+    val startDestination get() = _startDestination
 
     init {
         loadRecentlySearched()
@@ -24,7 +25,14 @@ class MainViewModel @Inject constructor(
     fun loadRecentlySearched() {
         viewModelScope.launch {
             getRecentlySearchedUseCase(Unit).let { result ->
-                _navigateToMainScreen.update { result.isSuccess }
+                when {
+                    result.isSuccess -> {
+                        _startDestination.update { MainRoute.Detail.path }
+                    }
+                    else -> {
+                        _startDestination.update { MainRoute.Search.path }
+                    }
+                }
             }
         }
     }

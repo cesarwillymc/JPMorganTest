@@ -4,7 +4,7 @@ import com.cesarwillymc.jpmorgantest.data.sources.search.local.SearchLocalDataSo
 import com.cesarwillymc.jpmorgantest.data.sources.search.mapper.SearchResultMapper
 import com.cesarwillymc.jpmorgantest.data.sources.search.remote.SearchRemoteDataSource
 import com.cesarwillymc.jpmorgantest.util.constants.ONE
-import com.cesarwillymc.jpmorgantest.util.extension.formatCityStateCountry
+import com.cesarwillymc.jpmorgantest.util.extension.formatOnlyUS
 import com.cesarwillymc.jpmorgantest.util.state.Result
 import com.cesarwillymc.jpmorgantest.util.state.dataOrNull
 import com.cesarwillymc.jpmorgantest.util.state.isError
@@ -43,7 +43,7 @@ class SearchRepositoryTest : MockkTest() {
     fun searchFilterSuccess() = runTest {
         coEvery {
             remoteDataSource.search(
-                formatCityStateCountry(
+                formatOnlyUS(
                     SearchDataGenerator.city,
                     SearchDataGenerator.stateCode,
                     SearchDataGenerator.countryCode
@@ -54,7 +54,7 @@ class SearchRepositoryTest : MockkTest() {
         every {
             searchResultMapper.fromResponseToDomain(SearchDataGenerator.weatherData)
         } returns SearchDomainGenerator.weatherDomain
-        searchDataSource.searchFilter(
+        searchDataSource.searchByQuery(
             SearchDataGenerator.city,
             SearchDataGenerator.stateCode,
             SearchDataGenerator.countryCode
@@ -72,7 +72,7 @@ class SearchRepositoryTest : MockkTest() {
             )
         } returns Result.Error(Exception())
 
-        searchDataSource.searchFilter(
+        searchDataSource.searchByQuery(
             SearchDataGenerator.city,
             SearchDataGenerator.stateCode,
             SearchDataGenerator.countryCode
@@ -84,7 +84,7 @@ class SearchRepositoryTest : MockkTest() {
     @Test
     fun recentlySearched() = runTest {
         coEvery { searchLocalDataSource.recentlySearched() } returns Result.Success(
-            formatCityStateCountry(
+            formatOnlyUS(
                 SearchDataGenerator.city,
                 SearchDataGenerator.stateCode,
                 SearchDataGenerator.countryCode
@@ -118,7 +118,7 @@ class SearchRepositoryTest : MockkTest() {
     fun saveQuery() = runTest {
         coEvery {
             searchLocalDataSource.saveQuery(
-                formatCityStateCountry(
+                formatOnlyUS(
                     SearchDataGenerator.city,
                     SearchDataGenerator.stateCode,
                     SearchDataGenerator.countryCode

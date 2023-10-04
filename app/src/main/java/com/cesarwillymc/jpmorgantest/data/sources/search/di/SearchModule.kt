@@ -2,6 +2,8 @@ package com.cesarwillymc.jpmorgantest.data.sources.search.di
 
 import com.cesarwillymc.jpmorgantest.data.sources.search.SearchDataSource
 import com.cesarwillymc.jpmorgantest.data.sources.search.SearchRepository
+import com.cesarwillymc.jpmorgantest.data.sources.search.local.SearchLocalDataSource
+import com.cesarwillymc.jpmorgantest.data.sources.search.local.SearchLocalDataSourceImpl
 import com.cesarwillymc.jpmorgantest.data.sources.search.mapper.SearchResultMapper
 import com.cesarwillymc.jpmorgantest.data.sources.search.mapper.SearchResultMapperImpl
 import com.cesarwillymc.jpmorgantest.data.sources.search.remote.SearchRemoteDataSource
@@ -37,4 +39,10 @@ abstract class SearchModule {
     abstract fun bindsSearchRemoteDataSource(
         searchResultRemoteDataSource: SearchRemoteDataSourceImpl
     ): SearchRemoteDataSource
+
+    @Singleton
+    @Binds
+    abstract fun bindsSearchLocalDataSource(
+        searchLocalDataSource: SearchLocalDataSourceImpl
+    ): SearchLocalDataSource
 }

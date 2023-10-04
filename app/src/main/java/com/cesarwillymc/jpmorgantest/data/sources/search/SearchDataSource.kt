@@ -10,16 +10,17 @@ import com.cesarwillymc.jpmorgantest.util.state.Result
  * IOWA, United States.
  */
 interface SearchDataSource {
-    suspend fun searchFilter(
-        city: String,
-        stateCode: String,
-        countryCode: String
+    suspend fun searchByQuery(
+        query: String
+    ): Result<WeatherDetail>
+
+    suspend fun searchByLatLon(
+        lat: Double,
+        lon: Double
     ): Result<WeatherDetail>
 
     fun recentlySearched(): Result<String>
     fun saveQuery(
-        city: String,
-        stateCode: String,
-        countryCode: String
+        query: String
     ): Result<Unit>
 }

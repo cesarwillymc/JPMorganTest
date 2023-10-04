@@ -1,5 +1,6 @@
 package com.cesarwillymc.jpmorgantest.ui.navigation.graph
 
+import android.app.Activity
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -15,7 +16,8 @@ import com.cesarwillymc.jpmorgantest.ui.navigation.route.MainRoute
 @Composable
 fun CustomNavGraph(
     navController: NavHostController,
-    startDestination: String
+    startDestination: String,
+    activity: Activity
 ) {
     val mainActions = remember(navController) { MainAction(navController) }
     NavHost(
@@ -38,7 +40,8 @@ fun CustomNavGraph(
             SearchScreen(
                 navigateToDetail = mainActions.navigateToDetail,
                 navigateUp = mainActions.navigateUp,
-                navController = navController
+                navController = navController,
+                activity = activity
             )
         }
 
